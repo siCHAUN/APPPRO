@@ -1,0 +1,44 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>怎么取出地址栏里的参数值</title>
+<meta charset="utf-8" />
+
+</head>
+<body>
+ 	<form>
+		姓名:<input name="username"/><br>
+		密码:<input type="password" name="pwd"/><br>
+    爱好:<input type="checkbox" name="favs" value="running"/>跑步
+          <input type="checkbox" name="favs" value="swimming"/>游泳
+          <input type="checkbox" name="favs" value="basketball"/>篮球
+          <br>
+		<input type="submit"/>
+	</form>
+  <script>
+    function search2Obj(){
+      var obj={};
+      if(location.search!==""){
+        //"?username=zhangdong&pwd=123456"
+        var str=location.search.slice(1);
+        //"username=zhangdong&pwd=123456"
+        var arr=str.split("&");
+        //["username=zhangdong","pwd=123456"]
+        for(var sub of arr){
+          var [key,value]=sub.split("=");
+          //[username,zhangdong]
+          if(obj[key]===undefined)
+            obj[key]=value;//obj{ username:zhangdon }
+          else{
+            obj[key]=[].concat(value,obj[key])
+          }
+        }
+        //obj{username:zhangdong, pwd:123456 }
+      }
+      return obj;
+    }
+    var obj=search2Obj();
+    console.log(obj);
+  </script>
+</body>
+</html>

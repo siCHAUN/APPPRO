@@ -1,0 +1,6 @@
+1. 所有代码运行在严格模式下
+2. 引入for of代替each()
+3. 新的动画API:requestAnimationFrame()
+    显示器刷新频率: 100次/s
+    animate(动画)
+4. 支持Promise

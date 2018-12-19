@@ -1,0 +1,44 @@
+递归遍历指定父元素下所有子节点：2步
+1.先仅遍历直接子节点：
+问题：childNodes和children返回的是动态集合
+动态集合：不实际存属性值，每次访问集合，都重新查找DOM树；
+优点：首次查找速度快，因为不必分返回所有数据
+缺点：反复访问集合，会导致反复查找DOM树
+所以：for(var i=0;i<children.length;i++)不好；
+解决：or(var i=0;len=children.length;i<len;i++)
+2.对每个直接子节点，调用和父节点完全相同的函数
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>遍历节点树</title>
+		<meta charset="utf-8"/>
+		
+	</head>
+	<body>
+			<span>Hello World !</span>
+			<ul id="nav">
+				<li>电影</li>
+				<li>综艺
+					<ul>
+						<li>跑男</li>
+						<li>爸爸</li>
+						<li>极限</li>
+					</ul>
+				</li>
+				<li>剧集</li>
+			</ul>	
+	    <script src="js/2.js"></script>
+	</body>
+</html>
+
+
+function getChildren(parent){
+	var children=parent.children;
+	for(var i=0;len=children.length;i<len;i++){//i<len，是len=children的副本，只查找一次DOM树
+	arguments.callee(children[i])
+	}
+}
+window.onload=function(){
+	getChildren(document.body)
+}

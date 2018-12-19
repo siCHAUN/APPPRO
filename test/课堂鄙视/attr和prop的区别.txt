@@ -1,0 +1,5 @@
+鄙视: attr() vs prop()
+   prop()可访问内存中对象上任何打.可访问的属性
+   attr()只能访问出现在开始标签中的HTML属性
+    仅等效于get/setAttribute()
+  问题: 默认prop()和attr()一次只能修改一个属性

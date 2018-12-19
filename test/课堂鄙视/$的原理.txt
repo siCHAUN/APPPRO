@@ -1,0 +1,9 @@
+*****鄙视: jQuery中$的原理:
+ 4种重载: $趋势是创建jquery类型子对象的意思，包括以下四种情况
+  1. $("selector") ，$会查找符合selector的DOM元素，封装进jQuery对象
+    优化(speed-up): 从jquery中能看出如下:
+    当只有一个条件时，就能查出结果,首选按HTML查找,快
+      当条件复杂时，按选择器查找,简单,好用
+  2. $(DOM元素) $会直接将DOM元素放入jQuery对象中,比如this,e.target
+  3. $("HTML片断") $会创建新元素，放入jQuery对象中
+  4. $(function(){ … }) $会绑定DOM内容加载后自动执行的事件,不用等图片和css样式

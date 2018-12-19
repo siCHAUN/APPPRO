@@ -1,0 +1,48 @@
+鄙视:$(…).each(function(i,elem)与$.each(类数组对象，function(I,elem)) 的区别
+ $(…).each(function(i,elem){ //实例方法
+this->elem  var $elem=$(this)
+ //注若使用箭头函数，因this内外通用，则当前元素直接用$(elem)封装，不能$(this)
+})
+遍历所有类数组对象：
+$.each(类数组对象，function(I,elem)) //静态方法
+
+
+<ul id="list">
+  <li>98</li>
+  <li>85</li>
+  <li>33</li>
+  <li>99</li>
+  <li>52</li>
+</ul>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //请给每个不足60分的成绩+10分，并将超过90分的成绩用绿色背景标识出来
+  $("#list>li").each((i,li)=>{//只有3版本,支持换成for of遍历li
+    var $li=$(li);
+    var score=parseInt($li.html());
+    if(score>=90)
+      $li.css("background","green");
+    else if(score<60)
+      $li.html(score+10);
+  })
+
+</script>
+<!-- 笔记： 2. 遍历: 集合里的元素
+  $(…).each(function(i,elem){i，代表当前元素的下标，elem指当前元素，是dom元素
+    //this->elem
+}) -->
+<script>
+	function add(){
+    //arguments
+    var sum=0;
+    $.each(arguments,(i,elem)=>{
+      sum+=elem
+    })
+    return sum;
+  }
+  console.log(
+    add(1,2,3), //6
+    add(1,2,3,4,5) //15
+  );
+</script>	

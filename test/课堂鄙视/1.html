@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //统计一个字符串中出现次数最多的字符是?共出现多少次
+        var str="youcanyouupnocannobibinozuonodie";
+       // 方法一:
+        var dict={
+           // y:2,
+           // o:5
+        };
+        var max=1;
+        var c="";
+        for(var i=0;i<str.length;i++){
+            var char=str[i];
+            if(dict[char]===undefined)
+            dict[char]=1;
+            else{
+                dict[char]+=1;
+                if(dict[char]>max){
+                    max=dict[char];
+                    c=char;
+                }
+            }
+        }
+        console.log(c,max)
+      //  方法二:
+        function fun2(str){
+            var arr=str.split("")
+                        .sort()
+                        .join("")
+                        .match(/([a-z])\1*/g)
+                        .sort((a,b)=>b.length-a.length);
+                console.log(arr[0][0]+arr[0].length);
+        }
+        fun2(str);
+
+
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,28 @@
+ 鄙视: jQuery中共有几种事件绑定方式, 差别是什么?
+ DOM: elem.addEventListener("事件名",fun)
+      elem.removeEventListener("事件名",fun)
+ 1. $elem.bind("事件名",fun)，代替.addEventListener()
+   $elem.unbind("事件名",fun),代替.removeEventListener()
+        .unbind("事件名")移除该事件上所有处理函数
+        .unbind()移除该元素删所有事件的所有处理函数
+ 2. $elem.one("事件名",fun)
+    绑定后，只触发一次，执行后，自动解绑
+ 3. $parent.delegate() 事件委托
+         .undelegate()
+  其实就是简化版利用冒泡！
+   $parent.delegate("selector","事件名",function(){
+		This->e.target
+		不用if($star.is(“selector”)){应该将选择器写到参数中}
+     var $tar=$(this)
+     … …
+})
+ 4. $elem.on() on统一了bind和delegate
+        .off()解绑
+   $elem.on("事件名",fun) -> bind("事件名",fun)
+$parent.on("事件名","selector",fun) -> delegate() 
+This->e.target
+		不用if($star.is(“selector”)){应该将选择器写到参数中}
+     var $tar=$(this)
+
+ 5. $elem.事件名(fun)
+    只支持21种事件，提供简化版绑定的API绑定，不支持简化版冒泡delegate

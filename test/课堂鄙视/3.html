@@ -1,0 +1,9 @@
+//鄙视: 
+var a;
+function fun(){
+  a=b=5
+}
+fun();
+setTimeout(fun,0)
+console.log(a);//undefined
+console.log(b);//报错！ReferenceError: b 未定义
